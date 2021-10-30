@@ -54,11 +54,27 @@ header nav .gnb li a{
     /* block속성은 한 값을 다 차지하고 옆으로 나열
     마진값으로 나열 떨어뜨려주기 */
     margin-left: 60px;
-    background-color: blue;
     font-size: 18px;
     text-transform: uppercase;
+    /* 가상 콘텐츠 기준점을 잡기 위해 */
+    position: relative; 
+
+}
+header nav .gnb li a:after{
+    content: '';
+    width: 0%;
+    height: 1px;
+    position: absolute;
+    background-color: #888;
+    bottom: 47px;
+    left: 50%;
+    /* translateX(-50%); 가운데로 온다. */
+    transform: translateX(-50%);transition: all 0.5s;
 }
 
+header nav .gnb li a:hover:after, header nav .gnb li a:focus:after {
+    width: 100%;
+}
 /* 인라인블럭 (inline-block) 요소
  
 
