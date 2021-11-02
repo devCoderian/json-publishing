@@ -32,8 +32,8 @@ header .logo{
     font-size: 42px;
     font-weight: 900;
     /* 자간 간격 */
-    letter-spacing: -6px;
-    color: #39312b;
+    letter-spacing: -3px;
+    color: #fff;
     float: left;
 }
 
@@ -89,3 +89,218 @@ inline 특징 (= 옆으로 나열) + block 특징 (= 너비높이지정 가능)
 <textarea> */
 
 /* 인라인 블럭 요소 확인 */
+
+/* VISUAL */
+/* header영역이 마우스 스크롤할때 픽스가 됨 
+-> header 영역 아래 위치하도록 마진값 주기*/
+section.visual {
+    margin-top: 120px;
+    padding-bottom: 50px;
+    position: relative;
+    border: #000;
+}
+/* 
+static
+일단 모든 태그들은 처음에 position: static 상태입니다. (기본적으로 static이라 따로 써주지 않아도 됩니다.) 
+차례대로 왼쪽에서 오른쪽, 위에서 아래로 쌓입니다.
+relative
+여기서 태그의 위치를 살짝 변경하고 싶을 때 position: relative를 사용합니다. 
+이제 top(위), right(오른쪽), bottom(아래), left(왼쪽) 속성을 사용해 위치 조절이 가능합니다. 
+relative는 각각의 방향을 기준으로 태그 안쪽 방향으로 이동합니다. 바깥쪽으로 이동하게 하고 싶으면 5px 대신 음수 -5px를 주면 됩니다.
+absolute
+relative가 static인 상태를 기준으로 주어진 픽셀만큼 움직였다면, absolute는 position: static 속성을 가지고 있지 않은 조상을 기준으로 움직입니다.
+만약 조상 중에 포지션이 relative, absolute, fixed인 태그가 없다면 가장 위의 태그(body)가 기준이 됩니다.
+fixed
+제 홈페이지를 보시면 상단 로그인 메뉴와 좌측 내비게이션 메뉴, 우측 명예의 전당, 
+그리고 하단 포스트 메뉴는 항상 특정 위치에 고정되어 있습니다. 스크롤을 내려도 그 자리에 계속 있죠. 바로 포지션이 fixed로 설정되어 있기 때문입니다.
+*/
+/* 가상 콘텐츠 */
+section.visual:before{
+    content: '';
+    width: 53%;
+    height: 400px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #4e4e4e;
+}
+section.visual .img{
+    position: relative; 
+    /* 안에 타이틀 글자 값 위치(absolute) 주기 위해 */
+    overflow: hidden;
+    text-align: center;
+    width:94%;
+}
+section.visual .img img{
+   width: 100%;
+}
+
+section.visual .title{
+    position: absolute;
+    top: 40%;
+    left: 8%;
+    color: #fff;
+}
+section.visual .title h2{
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+section.visual .title p{
+    font-size: 20px;
+    font-weight: 300;
+}
+
+section.visual .menu{
+    position: absolute;
+    bottom: 15%;
+    left: 8%;
+}
+
+
+section.visual .menu li{
+    float: left;
+    margin-right: 60px;
+}
+
+
+section.visual .menu li a{
+    background-color: red;
+    display: block;
+    color: #fff;
+}
+
+/* 화살표 왼쪽으로 */
+section.visual .menu li a p{
+    float: left;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* 줄바꿈을 위해 block 속성으로 바꿈 */
+section.visual .menu li a p span{
+    display: block;
+    font-weight: 100;
+    font-size: 15px;
+    color: #aaa;
+}
+
+/* 줄바꿈을 위해 inline 속성으로 바꿈 
+옆으로 올라올수 있도록 float right 속성으로 바꿈
+ 가상 컨텐츠를 위해  position: relative 흰 네모 박스
+ 앞으로 보일 수 있도록 z-index 1*/
+section.visual .menu li a .arrow{
+   
+    display: block;
+    float: right;
+    /* background-color: orange; */
+    margin-top: 10px;
+    margin-left: 20px;
+    position: relative;
+    z-index: 1;
+
+}
+
+section.visual .menu li a .arrow::before{
+    content: '';
+    width: 40px;
+    height: 40px;
+    background: rgba(252, 252, 252, 0.4);
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    z-index: -1;
+}
+
+/* float 속성 알아보기 */
+section.visual .menu li a .arrow::before{
+    content: '';
+    width: 40px;
+    height: 40px;
+    background: rgba(252, 252, 252, 0.4);
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    z-index: -1;
+    /* hover 부드럽게 */
+    transition: 0.2s;
+}
+
+/* hover했을때 살짝 커지기 */
+section.visual .menu li a:hover .arrow::before,
+section.visual .menu li a:focus .arrow::before
+{
+    top: 0;
+    right: 0;
+}
+
+/* 마스크 부분 */
+section.visual .img .mask {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #000;
+
+}
+
+/* 마스크 의 a라서 띄우지 않고*/
+section.visual .img .mask.a{
+   left:0;
+}
+section.visual .img .mask.b{
+    left:25%;
+ }
+ section.visual .img .mask.c{
+    left:50%;
+ }
+ section.visual .img .mask.d{
+    left:75%;
+ }
+/* 마스크라는 애니메이션 만들기 */
+
+ @keyframes mask {
+    0%{width: 25%; background: #000;}
+    50%{width: 25%; background: #000;}
+    99% {background: #000;}
+}
+/* section.visual .img .mask.a {animation-name: mask; animation-duration: 0.4s; }
+section.visual .img .mask.b {animation-name: mask; animation-duration: 0.6s; }
+section.visual .img .mask.c {animation-name: mask; animation-duration: 0.8s; }
+section.visual .img .mask.d {animation-name: mask; animation-duration: 1s; } */
+
+section.visual .img .mask.a{animation-name: mask; animation-duration: 0.4s;}
+ section.visual .img .mask.b{animation-name: mask; animation-duration: 0.6s;}
+ section.visual .img .mask.c{animation-name: mask; animation-duration: 0.8s;}
+ section.visual .img .mask.d{animation-name: mask; animation-duration: 1s;}
+ /* 텍스트 애니메이션 */
+ @keyframes slide-up{
+     0%{opacity: 0;}
+     40%{opacity: 0; transform: translateY(40px);}
+ }
+
+ section.visual .title h2{
+    animation-name: slide-up; animation-duration: 1.5s;
+ }
+
+ section.visual .title p{
+    animation-name: slide-up; animation-duration: 2.2s;
+ }
+ section.visual .menu{
+    animation-name: slide-up; animation-duration: 2.8s;
+ }
+
+ section.visual .img img{
+    transform: scale(1); 
+    animation-name: scaleani;
+    animation-duration: 2s;
+ }
+
+
+ @keyframes scaleani{
+     0%{transform: scale(1.3)};
+    30%{transform: scale(1.3)};
+    /* 100%일때는 위에 scale(1)로 감 */
+ }
