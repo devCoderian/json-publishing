@@ -485,3 +485,133 @@ section.premium .title a:hover:before,
 section.premium .title a:focus:before{
     width: 0%;
 }
+
+/* section.global */
+section.global{
+    width: 95%;
+    margin: 40px auto 0;
+    padding: 40px 0;
+    text-align: center;
+    /* 이미지를 가상 컨텐츠로 주기 위해 */
+    position: relative;
+}
+
+section.global:before {
+    content: '';
+    width: 100%;
+    height: 45%;
+    background-color: #eee;
+    /* background-color:red; */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+section.global .title h2{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+section.global .title p {
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 50px;
+}
+section.global ul{
+    /* 자식 요소를 float를 줄거기 때문에(띄움) 감쌀수 있도록 hidden 주기 */
+    overflow: hidden;
+    padding-top: 50px;
+}
+section.global ul li{
+    float: left;
+    width: 25%;
+    padding: 15px;
+    /* 25% 4개라서 100%를 차지하는데 그안에 패딩값이 있으면 잘리니까
+    borderbox 처리 */
+    box-sizing: border-box;
+}
+
+/* 박스 리스트들 위치 높이 다르게 만들기 */
+section.global ul li:nth-child(1), 
+section.global ul li:nth-child(3){
+ margin-top: -50px;
+}
+
+section.global ul li a{
+  display: block;
+}
+
+section.global ul li a .img{
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.25);
+    /* view text hover 되는거 보게 하기 위해서 */
+    position: relative;
+    /* hover처리될때 부드럽게 진행될수있도록 트랜지션*/
+    transform: all 0.2s;
+}
+
+section.global ul li a .img img{
+    width: 100%;
+}
+
+
+section.global ul li a:hover .img,
+section.global ul li a:focus .img{
+    transform: translate(-8px, -8px);
+    box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.35);
+}
+
+section.global ul li a .img:after{
+   content: 'VIEW';
+   width: 100%;
+   height: 100%;
+   background: rgba(44, 35, 28, 0.8);
+   position: absolute;
+   left: 0;
+   top: 0;
+   font-size: 22px;
+   color: #d4d4d4;
+   /* view 글자 위치 조정 */
+   padding-top: 200px;
+   box-sizing: border-box;
+   /* 호버할때만 보이기 위해  */
+   opacity: 0;
+    transition: all 0.2s;
+}
+
+section.global ul li a:hover .img::after,
+section.global ul li a:focus .img::after{
+    opacity: 1;
+}
+
+section.global ul li a h3{
+    font-size: 22px;
+    margin: 40px 0 15px;
+}
+section.global ul li a h3 span{
+    display: block;
+    font-size: 18px;
+    font-weight: normal;
+    color: #888;
+}
+
+
+section.global ul li a p{
+    font-size: 17px;
+}
+
+/* animation */
+section.global ul li{
+    animation-name: slide-up;
+    animation-duration: 1s;
+}
+section.global ul li:nth-child(2){
+    animation-name: slide-up;
+    animation-duration: 1.4s;
+}
+section.global ul li:nth-child(2){
+    animation-name: slide-up;
+    animation-duration: 1.7s;
+}
+section.global ul li:nth-child(2){
+    animation-name: slide-up;
+    animation-duration: 2s;
+}
